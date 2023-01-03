@@ -28,7 +28,7 @@ However, the driver is passed from class to class.
 - Aspectj
 
 ### Prerequisites
-- You need to have java installed. For this project you will need the Java Runtime Environment
+- You need to have Java installed. For this project you will need the Java Runtime Environment
 (JRE) and the Java Development Kit (JDK).
 
   - Please, visit [https://www.java.com/en/download/help/download_options.html] for
