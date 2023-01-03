@@ -1,6 +1,6 @@
-#Amazon Automation Project
+# Amazon Automation Project
 
-#About
+## About
 This project is to test the Amazon web page. The test report tool used
 is Allure report. For static code analysis I'll be using Sonarlint.
 
@@ -16,7 +16,7 @@ have an implicit wait to make sure the element is interactable before performing
 The driver is implemented in such a way that it can be accessed from anywhere in the project.
 However, the driver is passed from class to class.
 
-##Tech Stack
+## Tech Stack
 
 - Java.
 - Selenium WebDriver.
@@ -27,7 +27,7 @@ However, the driver is passed from class to class.
 - Maven Surefire Plugin
 - Aspectj
 
-###Prerequisites
+### Prerequisites
 - You need to have java installed. For this project you will need the Java Runtime Environment
 (JRE) and the Java Development Kit (JDK).
 
@@ -41,7 +41,7 @@ I would recommend the version 8 or 11.
   - On Windows [https://phoenixnap.com/kb/install-maven-windows]
   - On Mac OS [https://www.digitalocean.com/community/tutorials/install-maven-mac-os]
   
-###Installation
+### Installation
 
 Clone the repository from Github.
 git clone https://github.com/edwin005/Amazon_Automation.git  
