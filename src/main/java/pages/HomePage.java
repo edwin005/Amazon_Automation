@@ -1,34 +1,57 @@
 package pages;
 
+
+import actions.RepetitiveActions;
+import org.testng.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import util.GeneralHelper;
-import util.Util;
+import pages.menus.AccountAndListsMenu;
+import pages.menus.AllMenu;
 
-import java.time.Duration;
-import java.util.List;
+import static actions.RepetitiveActions.getInstanceRepetitiveActions;
 
 public class HomePage {
     private static WebDriver driver;
+
     public HomePage(WebDriver driver){
         this.driver = driver;
     }
 
+    private String signedInHelloLabel = "Hello, Automation";
+    private String signedOutHelloLabel = "Hello, sign in";
+    private By helloLabel = By.id("nav-link-accountList-nav-line-1");
     private By todaysDealTab = By.xpath("//a[@data-csa-c-content-id='nav_cs_gb']");
     private By customerServiceTab = By.xpath("//a[@data-csa-c-content-id='nav_cs_customerservice']");
-    private By registryTab = By.xpath("data-csa-c-content-id='nav_cs_registry'");
+    private By registryTab = By.xpath("//a[@data-csa-c-content-id='nav_cs_registry']");
     private By giftCardsTab = By.xpath("//a[@data-csa-c-content-id='nav_cs_gc']");
     private By sellTab = By.xpath("//a[@data-csa-c-content-id='nav_cs_sell']");
     private By allMenu = By.xpath("//a[@id='nav-hamburger-menu']");
     private By shopGreatDealsNowTab = By.xpath("//a[@id='swm-link']");
     private By shoppingCarticon = By.xpath("//a[@id='nav-cart']");
     private By laguageFlag = By.xpath("//a[@id='icp-nav-flyout']");
+    private By accountAndListsTab = By.id("nav-link-accountList");
 
+    public String getTitle(){
+        return driver.getTitle();
+    }
 
+    public void verifySignedInHelloLabel(){
+        Assert.assertEquals(signedInHelloLabel, driver.findElement(helloLabel).getText());
+    }
+
+    public void verifySignedOutHelloLabel() {
+        Assert.assertEquals(signedOutHelloLabel, driver.findElement(helloLabel).getText());
+    }
+
+    public Object clickOnAccountAndListTab(){
+        if(driver.findElement(helloLabel).getText().equalsIgnoreCase(signedOutHelloLabel)){
+            getInstanceRepetitiveActions().clickOn(accountAndListsTab);
+            return new SignInPage(driver);
+        }else{
+            //TODO
+            return null;
+        }
+    }
     /**
      * @Author Edwin De Los Santos A.
      * Creation Date: 12/12/2022
@@ -36,7 +59,8 @@ public class HomePage {
      */
     public TodaysDealPage clickOnTodaysDealTab(){
         try{
-            GeneralHelper.clickOn(todaysDealTab);
+
+            getInstanceRepetitiveActions().clickOn(todaysDealTab);
         }catch (Exception e){
             System.err.println("Exception occured. Method: clickOnTodaysDealTab. Exception: " + e.getMessage());
         }finally {
@@ -51,7 +75,7 @@ public class HomePage {
      */
     public SellPage clickOnSellTab(){
         try{
-            GeneralHelper.clickOn(sellTab);
+            getInstanceRepetitiveActions().clickOn(sellTab);
         }catch (Exception e){
             System.err.println("Exception occured. Method: clickOnSellTab. Exception: " + e.getMessage());
         }finally {
@@ -66,7 +90,7 @@ public class HomePage {
      */
     public RegistryPage clickOnRegistryTab(){
         try{
-            GeneralHelper.clickOn(registryTab);
+            RepetitiveActions.getInstanceRepetitiveActions().clickOn(registryTab);
         }catch (Exception e){
             System.err.println("Exception occured. Method: clickOnRegistryTab. Exception: " + e.getMessage());
         }finally {
@@ -81,7 +105,7 @@ public class HomePage {
      */
     public GiftCardsPage clickOnGiftCardsTab(){
         try{
-            GeneralHelper.clickOn(giftCardsTab);
+            getInstanceRepetitiveActions().clickOn(giftCardsTab);
         }catch (Exception e){
             System.err.println("Exception occured. Method: clickOnGiftCardsTab. Exception: " + e.getMessage());
         }finally {
@@ -96,7 +120,7 @@ public class HomePage {
      */
     public CustomerServicePage clickOnCustomerServiceTab(){
         try{
-            GeneralHelper.clickOn(customerServiceTab);
+            getInstanceRepetitiveActions().clickOn(customerServiceTab);
         }catch (Exception e){
             System.err.println("Exception occured. Method: clickOnCustomerServiceTab. Exception: " + e.getMessage());
         }finally {
@@ -109,13 +133,13 @@ public class HomePage {
      * Creation Date: 12/12/2022
      * This method takes the user to the page "Customer Service" by on the respective option located in the header.
      */
-    public AllModalPage clickOnAllMenuTab(){
+    public AllMenu clickOnAllMenuTab(){
         try{
-            GeneralHelper.clickOn(allMenu);
+            getInstanceRepetitiveActions().clickOn(allMenu);
         }catch (Exception e){
             System.err.println("Exception occured. Method: clickOnAllMenuTab. Exception: " + e.getMessage());
         }finally {
-            return new AllModalPage(driver);
+            return new AllMenu(driver);
         }
     }
 
@@ -126,7 +150,7 @@ public class HomePage {
      */
     public ShopGreatDealsNowPage clickOnShopGreatDealsNowTab(){
         try{
-            GeneralHelper.clickOn(shopGreatDealsNowTab);
+            getInstanceRepetitiveActions().clickOn(shopGreatDealsNowTab);
         }catch (Exception e){
             System.err.println("Exception occured. Method: clickOnShopGreatDealsNowTab. Exception: " + e.getMessage());
         }finally {
@@ -141,7 +165,7 @@ public class HomePage {
      */
     public LanguagePage clickOnLanguageFlag (){
         try{
-            GeneralHelper.clickOn(laguageFlag);
+            getInstanceRepetitiveActions().clickOn(laguageFlag);
         }catch (Exception e){
             System.err.println("Exception occured. Method: clickOnCareersPage. Exception: " + e.getMessage());
         }finally {
@@ -149,6 +173,19 @@ public class HomePage {
         }
     }
 
-
+    /**
+     * @Author Edwin De Los Santos A.
+     * Creation Date: 12/12/2022
+     * This method takes the user to the page "Customer Service" by on the respective option located in the header.
+     */
+    public AccountAndListsMenu hoverOverAccountAndListTab (){
+        try{
+            getInstanceRepetitiveActions().hoverMouse(accountAndListsTab);
+        }catch (Exception e){
+            System.err.println("Exception occured. Method: hoverOverAccountAndListTab. Exception: " + e.getMessage());
+        }finally {
+            return new AccountAndListsMenu(driver);
+        }
+    }
 
 }

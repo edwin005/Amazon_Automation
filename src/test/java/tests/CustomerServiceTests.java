@@ -11,6 +11,6 @@ public class CustomerServiceTests extends BaseTests {
     @Test
     public void VerifyPageTitle(){
         CustomerServicePage customerServicePage = homePage.clickOnCustomerServiceTab();
-        Assert.assertEquals(customerServicePage, todaysDealPageTitle);
+        customerServicePage.verifyTitle();
     }
 }
